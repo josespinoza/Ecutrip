@@ -1,0 +1,278 @@
+/* MAQUETACION
+********************************************************************************************/
+
+body
+{
+	font-size: 1em;
+	color: #222;
+}
+	header .widget-button,
+	header .widget-button-next,
+	header .widget-select
+	{
+		background-color: #fe8400;
+		box-shadow: none;
+	}
+	
+	header{ height: 45px; font-size: 0.84em; background: #000;}
+
+		header>div
+		{
+			width: 100%;
+			height: 100%;
+			display: table;
+			table-layout: fixed;
+		}
+
+		header .widget-title
+		{
+			text-align: center;
+			display: table-cell;
+			vertical-align: middle;
+			margin: 0;
+			position: relative;
+			width: 50%;
+		}
+
+		header>div,
+		header>form
+		{
+			border-bottom: 2px solid #000;
+			border-top: 1px solid #999;
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+		}
+
+		.widget-select select
+		{
+			padding: 4px 5px;
+			text-align: center;
+		}
+
+		#backButton
+		{
+			position: absolute;
+			top: 6px;
+			width: 19%;
+		}
+
+		header #backButton a
+		{
+			margin-left: 15px;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+
+		body.mapCanvas_view header #backButton a
+		{
+			display: none;
+		}
+
+		header h1
+		{
+			height: 70%;
+			background: url(../img/titulo.png) no-repeat 50% 50%;
+			background-size: auto 100%;
+			text-indent: -9000px
+		}
+		
+		header>div form
+		{
+			border: 0;
+			padding: 0;
+			margin: 0;
+			top: 0;
+			display: table-cell;
+			vertical-align: middle;  
+			text-align: right;
+			width: 30%;
+		}
+		header>div form .widget-select
+		{
+			margin-right: 10px;
+		}
+	
+	footer
+	{
+		width: 100%;
+		height: 55px;
+	}
+		footer .widget-action-buttons{	table-layout: fixed; }
+		footer .widget-action-buttons a:hover{ background: transparent; }
+		footer .widget-action-buttons a { color: #fff; font-weight: normal; }
+	
+	
+	#container
+	{
+		width: 100%;
+		height: 100%;
+		text-align: left;
+		position: relative;
+		display: table-cell;
+	}
+	
+	article
+	{
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		margin:0;
+		overflow: hidden;
+		-webkit-animation-duration: 0.3s;
+		z-index: 10;
+	}
+	
+	
+	
+		article .listScroll { overflow-y: auto; height: 96.5%; display: block; }
+		article nav a
+		{
+			color: #222;
+			text-decoration: none;
+			display: block;
+			padding: 15px;
+			border-bottom: 1px solid #ccc;
+			margin-top: 2px;
+			position: relative;
+		}
+		
+		body.Categorias_view #Categorias nav a
+		{
+			background-position: 2% 40% !important;
+			padding-left: 15%;
+		}
+
+		article nav a.selected
+		{
+			color: #074db4;
+		}
+		article nav a.selected:after
+		{
+			position: absolute;
+			content: "\e009";
+			right: 5%;
+			font-family: 'icomoon';
+			speak: none;
+			font-weight: normal;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+		}
+	
+		article h2
+		{
+			display: block;
+			font-size: 100%;
+		}
+	
+
+
+
+/* INFORMACION POI
+********************************************************************************************/
+	#POIinfo
+	{
+		background: #f7f7f7;
+	}
+		#POIinfo h3
+		{
+			font-size: 100%;
+			color: #4d576d;
+			margin: 40px 3% 3% 3%;
+			text-indent: 5px;
+			padding-bottom: 2px;
+		}
+	
+		#POIinfo ul
+		{
+			background: #fff;
+			border: 1px solid #999;
+			border-radius: 5px
+		}
+
+		#POIinfo ul li:last-child{ border-bottom: 0}
+
+	
+		#POIofertas p
+		{
+			background: #fff;
+			width: 85%;
+			display: block;
+			padding: 15px;
+			margin: 0 auto;
+			border: 1px solid #999;
+			border-radius: 10px;
+		}
+
+
+
+/* BUSQUEDA
+/******************************************************************************************/
+	#searchBox
+	{
+		background-color: #222;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+		height: 45px;
+		width: 100%;
+		display: none;
+		position: absolute;
+		top:0;
+		right: 0;
+		z-index:9000;
+		vertical-align:middle;
+	}
+	
+	#searchBox a
+	{
+        width: 15%;
+        position:absolute;
+        top: 11%;
+        right: 4%;
+        text-align: center;
+    }
+    #searchBox a:before
+    {
+    	font-size: 90%;
+        content:"Cancel";
+	}
+	
+	#searchBox .widget-input
+	{
+		width: 70%;
+		margin-top: 5px;
+		background: #fff url(../img/busqueda_icon.png) 2% 50% no-repeat;
+		background-size: auto 60%;
+		margin-left: 4%;
+		text-align:left;
+	}
+
+	#searchBox .widget-input input { width: 89%; margin-left: 10%; padding: 7px inherit}
+	#searchResult { display: none; }
+		.widget-list-chevron>*:after
+		{
+			content: "\f054";
+			font-size: 1em;
+			font-family: 'icomoon';
+			speak: none;
+			font-weight: normal;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+		}
+
+/* TAB BAR
+/******************************************************************************************/
+
+body.Busqueda_view #busquedaBtn,
+body.Categorias_view #categoriasBtn
+{
+	color: #4ab3ff; 
+	background: rgba(255,255,255,0.06);
+	border-radius: 5px;
+}
+
+#POIinfo #POIsocial li a span.icon-compartir:before{ 
+			font-family: 'icomoon'; content: "\e00e";}

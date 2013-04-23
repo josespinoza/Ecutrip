@@ -1,0 +1,387 @@
+html, body, .fullscreen
+{
+	margin: 0;
+	padding: 0;
+	display: table;
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+body
+{
+}
+body>*{display: none}
+
+body #mensajes
+{
+	display: none;
+}
+
+body #mensajes.fullScreen
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #fff;
+	z-index: 9000;
+}
+body #mensajes.loader
+{
+	background: #fff url(../img/fondo.png) 50% 50% no-repeat;
+}
+
+/* TOURS
+********************************************************************************************/
+#tourPoiList { display: none; }
+#tourList.poilist #tourPoiList { display: block; }
+#tourList.poilist #nearTours   { display: none;  }
+
+/* EVENTS
+********************************************************************************************/
+#eventPoiList { display: none; }
+#eventList.poilist #eventPoiList { display: block; }
+#eventList.poilist #nearEvents   { display: none;  }
+
+/* TOURS
+********************************************************************************************/
+#POIinfo
+{
+	width: 100%;
+	height: 100%;
+}
+	#infoScroll { height: 89%; display: block}
+	#infoHolder { padding-bottom: 100px; }
+	#POIinfo h2
+	{
+		font-size: 150%;
+		color: #000;
+		border-bottom: 1px solid #000;
+		margin: 3% 0 0 0;
+		padding: 0 7px;
+		padding-bottom: 2%;
+	}
+
+	#POIinfo p{
+		margin: 20px auto;
+		margin-top: 8px;
+		text-align: justify;
+		width: 90%;
+	}
+	
+	#POIinfo #poiScroll { height: 100%; }
+	#POIimagenes ul { padding: 0; margin: 0; text-indent: 0;}
+	#POIimagenes li 
+	{
+		padding: 0; 
+		margin: 0; 
+		height: 100%;
+		background: url(../img/loader.gif) 50% 50% no-repeat;
+		background-size: auto 10%;
+	}
+		#POIimagenes img
+		{
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			border: 0;
+		}
+		
+	#POIinfo #POIcertificado
+	{
+		background: #C00;
+		color: #FFF;
+		position: relative;
+		padding: 5px 10px;
+		padding-right: 30px;
+		text-align: right;
+		display: none;
+		font-size: 100%;
+		margin-top: 0;
+	}
+	
+		#POIinfo #POIcertificado:after {
+			content: " ";
+			display: block;
+			width: 0;
+			height: 0;
+			border-top: 14px solid transparent;
+			border-bottom: 14px solid transparent;
+			border-right: 14px solid #f2f2f2;
+			position: absolute;
+			top: 50%;
+			margin-top: -14px;
+			right: 0;
+			z-index: 1;
+		}
+
+
+	#POIinfo ul
+	{
+		width: 85%;
+		background: #e2e2e2;
+		text-indent: 0;
+		padding: 0;
+		list-style: none;
+		margin: auto;
+		border-bottom: 2px solid #c00;
+	}
+
+		#POIinfo ul li
+		{
+			border-bottom: 1px solid #c0c0c0;
+			position: relative;
+			overflow: hidden;
+		}
+
+			#POIinfo ul li a
+			{
+				text-decoration: none;
+				color: #000;
+				font-weight: bold;
+				width: 100%;
+				padding: 10px;
+				display: inline-block;
+				margin: 0;
+			}
+				#POIinfo ul li a:before
+				{
+					position: absolute;
+					color: #999;
+					right: 6px;
+					margin-top: -4px;
+					font-size: 1.8em;
+					padding: 10px;
+				}
+				#POIinfo ul li a span
+				{
+					display: inline-block;
+					width: 100%;
+					color: #888;
+					font-size: 78%;
+				}
+
+				#POIinfo #POIsocial li a
+				{
+					padding: 20px 10px;
+				}
+
+				#POIinfo #POIsocial li a span,
+				#POIinfo #POIaudio li a span
+				{
+					width: auto;
+					font-size: 100%;
+					margin-right: 10px;
+					color: #c00;
+				}
+		#POIbanner{ width: 100%; max-width: 400px; margin: 20px auto 30px auto;}
+
+	.swipe {
+	  padding-bottom:0px;
+	  position:relative;
+	  z-index:1;
+	  -webkit-perspective: 1000;
+	  -webkit-backface-visibility: hidden;
+	}
+	.swipe li div, .swipe div div div {
+	  margin:0;
+	  padding:0;
+	  background:#1db1ff;
+	  font-weight:bold;
+	  color:#fff;
+	  font-size:20px;
+	  text-align:center;
+	}
+
+
+
+/* BUSQUEDA
+/*************************************************************/
+body.Busqueda_view #searchBox { display: table; }
+
+
+
+
+/* ANIMACIONES ENTRE PANTALLAS
+/******************************************************************************************/
+	#mapCanvas.Backward *,
+	#mapCanvas.Forward *
+	{
+		display: none;
+	}
+
+	article.show
+	{
+		display: block;
+	}
+
+	article.cargando
+	{
+		background: #fff url(../img/loader.gif) 50% 50% no-repeat;
+	}
+	article.cargando nav
+	{
+		display: none;
+	}
+
+	article.Forward.hide  { -webkit-animation-name: slideOut_forward !important;  }
+	article.Forward.show  { -webkit-animation-name: slideIn_forward;   }
+
+	article.Backward.hide { -webkit-animation-name: slideOut_backward !important; }
+	article.Backward.show { -webkit-animation-name: slideIn_backward;  }
+
+	@-webkit-keyframes slideOut_forward{
+		0%   { -webkit-transform: translateX(0    ); }
+		100% { -webkit-transform: translateX(-100%); display: none;}
+	}
+	@-webkit-keyframes slideIn_forward{
+		0%   { -webkit-transform: translateX(100%); display: block;}
+		100% { -webkit-transform: translateX(0   ); }
+	}
+	@-webkit-keyframes slideIn_backward{
+		0%   { -webkit-transform: translateX(-100%); display: block;}
+		100% { -webkit-transform: translateX(0    ); }
+	}
+	@-webkit-keyframes slideOut_backward{
+		0%   { -webkit-transform: translateX(0   ); }
+		100% { -webkit-transform: translateX(100%); display: none;}
+	}
+
+
+
+
+/* ICONS
+/*************************************************************/
+@font-face {
+	font-family: 'icomoon';
+	src:url('../fonts/icomoon.eot');
+	src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/icomoon.woff') format('woff'),
+		url('../fonts/icomoon.ttf') format('truetype'),
+		url('../fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'icomoon';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-checkbox-checked, .icon-checkbox-unchecked, .icon-volume-medium, .icon-chevron-right, .icon-chevron-left, .icon-arrow-left, .icon-untitled, .icon-checkmark, .icon-share, .icon-export, .icon-link, .icon-phone, .icon-heart, .icon-mail, .icon-location, .icon-signal, .icon-arrow-down, .icon-search, .icon-list-ul {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-checkbox-checked:before {
+	content: "\e004";
+}
+.icon-checkbox-unchecked:before {
+	content: "\e005";
+}
+.icon-volume-medium:before {
+	content: "\e006";
+}
+.icon-chevron-right:before {
+	content: "\f054";
+}
+.icon-chevron-left:before {
+	content: "\f053";
+}
+.icon-arrow-left:before {
+	content: "\e002";
+}
+.icon-untitled:before {
+	content: "\e008";
+}
+.icon-checkmark:before {
+	content: "\e009";
+}
+.icon-share:before {
+	content: "\e00a";
+}
+.icon-export:before {
+	content: "\e00e";
+}
+.icon-link:before {
+	content: "\e00f";
+}
+.icon-phone:before {
+	content: "\e010";
+}
+.icon-heart:before {
+	content: "\e011";
+}
+.icon-mail:before {
+	content: "\e012";
+}
+.icon-location:before {
+	content: "\e003";
+}
+.icon-signal:before {
+	content: "\e007";
+}
+.icon-arrow-down:before {
+	content: "\e00b";
+}
+.icon-search:before {
+	content: "\e00c";
+}
+.icon-list-ul:before {
+	content: "\f0ca";
+}
+
+/**********************************************************************************************
+/* Iconoc en las listas
+/**********************************************************************************************/
+body.Categorias_view #c1  { background: url(../img/POI/normales/marker1.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c2  { background: url(../img/POI/normales/marker2.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c3  { background: url(../img/POI/normales/marker3.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c4  { background: url(../img/POI/normales/marker4.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c5  { background: url(../img/POI/normales/marker5.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c6  { background: url(../img/POI/normales/marker6.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c7  { background: url(../img/POI/normales/marker7.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c8  { background: url(../img/POI/normales/marker8.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c9  { background: url(../img/POI/normales/marker9.png ) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c10 { background: url(../img/POI/normales/marker10.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c11 { background: url(../img/POI/normales/marker11.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c12 { background: url(../img/POI/normales/marker12.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c13 { background: url(../img/POI/normales/marker13.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c14 { background: url(../img/POI/normales/marker14.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c15 { background: url(../img/POI/normales/marker15.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c16 { background: url(../img/POI/normales/marker16.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c17 { background: url(../img/POI/normales/marker17.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c18 { background: url(../img/POI/normales/marker18.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c19 { background: url(../img/POI/normales/marker19.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c20 { background: url(../img/POI/normales/marker20.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c21 { background: url(../img/POI/normales/marker21.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c22 { background: url(../img/POI/normales/marker22.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c23 { background: url(../img/POI/normales/marker23.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c24 { background: url(../img/POI/normales/marker24.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c25 { background: url(../img/POI/normales/marker25.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c26 { background: url(../img/POI/normales/marker26.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c27 { background: url(../img/POI/normales/marker27.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c28 { background: url(../img/POI/normales/marker28.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c29 { background: url(../img/POI/normales/marker29.png) 92% 50% no-repeat; background-size: auto 70%; }
+body.Categorias_view #c30 { background: url(../img/POI/normales/marker30.png) 92% 50% no-repeat; background-size: auto 70%; }

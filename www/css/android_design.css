@@ -1,0 +1,235 @@
+/* MAQUETACION
+********************************************************************************************/
+	body, html
+	{
+		background: #f2f2f2;
+		font-size: 0.92em;
+		line-height: 1.2em;
+		color: #222;
+	}
+	
+	header{ height: 45px; display: table-row; }
+
+		header>div
+		{
+			width: 100%;
+			height: 100%;
+			display: table;
+			background: #FFF url(../img/logo.png) no-repeat 2% 50%;
+			background-size: auto 80%;
+			border-bottom: 3px solid #c00;
+		}
+
+		header form
+		{
+			border: 0;
+			padding: 0 10px 0 14%;
+			margin: 0;
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		header>div>div
+		{
+			display: none;
+		}
+	
+	footer
+	{
+		position: absolute;
+		display: block;
+		top: 0;
+		right: 0;
+		width: 27%;
+		height: 45px;
+	}
+		footer .widget-action-buttons a:hover{ background: transparent; }
+		footer .widget-action-buttons a
+		{
+			color: #848484;
+			font-size: 1.5em;
+		}
+	
+	
+	#container
+	{
+		width: 100%;
+		overflow: hidden;
+		text-align: left;
+		bottom: 0;
+	}
+	
+	article
+	{
+		width: 100%;
+		display: none;
+		position: absolute;
+		top: 45px;
+		bottom:0;
+		left: 0;
+		margin:0;
+		overflow: hidden;
+		-webkit-animation-duration: 0.3s;
+		z-index: 10;
+		background: #f2f2f2;
+	}	
+	
+	
+		article .listScroll { overflow-y: auto; height: 93%; display: block; }
+		article nav a
+		{
+			color: #222;
+			text-decoration: none;
+			display: block;
+			padding: 15px;
+			padding-left: 35px;
+			border-bottom: 1px solid #ccc;
+			background-size: auto 40%;
+			position: relative;
+		}
+			#scrollcategories nav>*:after
+			{
+				content: "\e005";
+				font-size: 1em;
+				font-family: 'icomoon';
+				speak: none;
+				font-weight: normal;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+				position: absolute;
+				left: 5px;
+				top: 50%;
+				margin-top: -0.5em;
+				color: #aaa;
+				border-right: 1px solid #ccc;
+				padding-right: 8px;
+			}
+	
+		article nav a.selected { background: #fff; }
+			#scrollcategories nav a.selected:after
+			{
+				content: "\e004";
+				color: #c00;
+			}
+	
+		article h2
+		{
+			margin: 10px 7px 0 7px;
+			padding-bottom: 5px;
+			color: #888;
+			display: block;
+			font-size: 100%;
+			border-bottom: 2px solid #888;
+		}
+	
+
+
+
+/* INFORMACION POI
+********************************************************************************************/
+		
+	
+		#POIinfo h3
+		{
+			font-size: 100%;
+			color: #7c7c7c;
+			border-bottom: 2px solid #888;
+			margin: 30px 7px 7px 7px;
+			text-indent: 5px;
+			font-weight: normal;
+			padding-bottom: 2px;
+		}
+		#POIinfo p{ width: 85%; }
+
+
+	
+	
+		#POIofertas p
+		{
+			background: #c00;
+			color: #FFF;
+			width: 75%;
+			box-shadow: 0 2px 5px #666;
+			height: 10%;
+			overflow: hidden;
+			display: block;
+			padding: 3% 5%;
+			margin: 0 auto;
+		}
+
+
+
+
+/* BUSQUEDA
+/******************************************************************************************/
+	#searchBox
+	{
+		background: #fff;
+		margin: 0;
+		text-align: right;
+		height: 45px;
+		width: 100%;
+		display: none;
+		position: absolute;
+		top:0;
+		left: 0;
+		padding:0;
+		z-index:9000;
+		vertical-align:middle;
+		border-bottom: 3px solid #c00;
+	}
+	
+	#searchBox a
+	{
+		width: 10%;
+		color: #888;
+		font-size: 1.8em;
+		position:absolute;
+		top: 0;
+		left: 0;
+		text-align:center;
+		text-decoration: none;
+		padding: 2.5% 0;
+		font-weight: bold;
+	}
+
+
+    #searchBox a:before
+    {
+    	font-size: 90%;
+		content: "\3c";
+		font-family: 'icomoon';
+		speak: none;
+		font-style: normal;
+		font-weight: normal;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+	
+	#searchBox .widget-input {
+		width: 80%;
+		margin-top:10px;
+		background:url(../img/busqueda_icon.png) 98% 50% no-repeat;
+		background-size: auto 70%;
+		margin-right: 8%;
+		text-align:left;
+		font-size: 1em
+	}
+
+	#searchBox .widget-input input { width: 89%; }
+	#scrollsearch nav a { padding-left: 15px;}
+	#searchResult { display: none; }
+		#scrollsearch .widget-list-chevron a:after
+		{
+			content: "\3e";
+			font-size: 1em;
+			font-family: 'icomoon';
+			speak: none;
+			font-weight: normal;
+			line-height: 1;
+			-webkit-font-smoothing: antialiased;
+		}
+
+
+#POIinfo #POIsocial li a span.icon-compartir:before{ 
+			font-family: 'icomoon'; content: "\e00a";}

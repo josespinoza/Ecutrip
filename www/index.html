@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+	<title>Ecutrips</title>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!--
+	el device-height en ios obtiene el total de pixeles de la pantalla, no del viewport
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi" />-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi" />
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="HandheldFriendly" content="True" />
+	<meta http-equiv="pragma" content="no-cache" />
+
+	<script src="./cordova.js"> 	</script>
+	<script src="js/parse.js">		</script>
+	<script src="js/map.js">		</script>
+	<script src="js/iscroll.js">	</script>
+	<script src="js/swipe.js">		</script>
+	<script src="js/xui.js">		</script>
+	<script src="js/pois.js" >		</script>
+	<script src="js/share.js" >		</script>
+	<script src="js/main.js" >		</script>
+
+	<link rel="stylesheet" type="text/css" id="basic"	href="css/basic.css" >
+	<link rel="stylesheet" type="text/css" id="widget"	href="" >
+	<link rel="stylesheet" type="text/css" id="design"  href="" >
+
+
+</head>
+<body>
+	<header class="widget-header">
+		<div>
+			<div id="backButton">
+				<a href="#" class="widget-button backButton">
+					<span class="icon-chevron-left"></span>
+				</a>
+			</div>
+
+			<div class="widget-title">
+				<h1>ECUTRIPS</h1>
+			</div>
+
+			<form>
+				<div class="widget-select">
+					<select id="tipoMapa">
+						<option>Ver Mapa</option>
+						<option>Ver Tour</option>
+						<option>Ver Eventos</option>
+					</select>
+				</div>
+			</form>
+		</div>
+		
+		<form action="#" id="searchBox">
+			<a href="#" class="widget-button backButton"></a>
+			<div class="widget-input">
+				<input type="text" id="q" placeholder="Ingrese su busqueda aqui"/>
+			</div>
+		</form>
+	</header>
+
+	
+
+	<section id="container">
+		<article id="mapCanvas" class="show">&nbsp;</article>
+
+		<!--********************* S I D E B A R S ***************************-->
+		<article id="Categorias" class="hide widget-listview">
+			<h2 class="widget-list-separator">BUSCAR POR CATEGOR&Iacute;A</h2>
+			<div id="scrollcategories" class="listScroll">
+				<nav>
+					<a href="#" id="c0" class="selected" >Mostrar todo			</a>
+					<a href="#" id="c1" >Artesan&iacute;as 						</a>
+					<a href="#" id="c2" >Bancos 								</a>
+					<a href="#" id="c3" >Bares 									</a>
+					<a href="#" id="c4" >Boutiques 								</a>
+					<a href="#" id="c5" >Cafeter&iacute;as 						</a>
+					<a href="#" id="c6" >Centros Comerciales 					</a>
+					<a href="#" id="c7" >Cines  								</a>
+					<a href="#" id="c8" >Circos 								</a>
+					<a href="#" id="c9" >Conciertos 							</a>
+					<a href="#" id="c10">Discotecas 							</a>
+					<a href="#" id="c11">Estadios 								</a>
+					<a href="#" id="c12">Estaciones de Servicio (gasolineras)	</a>
+					<a href="#" id="c13" >Hospitales/Centros de Salud			</a>
+					<a href="#" id="c14">Hoteles 								</a>
+					<a href="#" id="c15">Iglesias 								</a>
+					<a href="#" id="c16">Librerias 								</a>
+					<a href="#" id="c17">Museos									</a>
+					<a href="#" id="c18">Parques 								</a>
+					<a href="#" id="c19">Puntos Tur&iacute;sticos 				</a>
+					<a href="#" id="c20">Restaurantes 							</a>
+					<a href="#" id="c21">Spas 									</a>
+					<a href="#" id="c22">Teatros 								</a>
+					<a href="#" id="c23">Tiendas	 							</a>
+					<a href="#" id="c24">Zool&oacute;gicos 						</a>
+				</nav>
+			</div>
+		</article>
+
+
+		<article id="tourList" class="hide widget-listview">
+			<div id="scrolltours">
+				<nav>
+				</nav>
+			</div>
+		</article>
+
+		<article id="eventList" class="hide widget-listview">
+			<div id="scrollevents">
+				<nav>
+				</nav>
+			</div>
+		</article>
+
+
+
+		<article id="Busqueda" class="hide widget-listview">
+			<h2>BUSCAR POR CATEGOR&Iacute;A</h2>			
+			<div id="scrollsearch" class="listScroll">
+				<nav class="widget-list-chevron">
+					<a href="#" rel="1" >Artesan&iacute;as 						</a>
+					<a href="#" rel="2" >Bancos 								</a>
+					<a href="#" rel="3" >Bares 									</a>
+					<a href="#" rel="4" >Boutiques 								</a>
+					<a href="#" rel="5" >Cafeter&iacute;as 						</a>
+					<a href="#" rel="6" >Centros Comerciales 					</a>
+					<a href="#" rel="7" >Cines  								</a>
+					<a href="#" rel="8" >Circos 								</a>
+					<a href="#" rel="9" >Conciertos 							</a>
+					<a href="#" rel="10">Discotecas 							</a>
+					<a href="#" rel="11">Estadios 								</a>
+					<a href="#" rel="12">Estaciones de Servicio (gasolineras)	</a>
+					<a href="#" rel="13" >Hospitales/Centros de Salud			</a>
+					<a href="#" rel="14">Hoteles 								</a>
+					<a href="#" rel="15">Iglesias 								</a>
+					<a href="#" rel="16">Librerias 								</a>
+					<a href="#" rel="17">Museos									</a>
+					<a href="#" rel="18">Parques 								</a>
+					<a href="#" rel="19">Puntos Tur&iacute;sticos 				</a>
+					<a href="#" rel="20">Restaurantes 							</a>
+					<a href="#" rel="21">Spas 									</a>
+					<a href="#" rel="22">Teatros 								</a>
+					<a href="#" rel="23">Tiendas	 							</a>
+					<a href="#" rel="24">Zool&oacute;gicos 						</a>
+				</nav>
+			</div>
+		</article>		
+
+
+		<!--************************* M O D A L S ******************************-->
+		<article id="POIinfo" class="hide">
+			<h2 id="titleHolder"></h2>
+			<div id="infoScroll">
+				<div id="infoHolder">
+				</div>
+			</div>
+		</article>
+	</section>
+
+
+	<footer>
+		<nav class="widget-action-buttons">
+			<a href="#" id="categoriasBtn"> <span class="icon-list-ul">		</span></a>
+			<a href="#" id="busquedaBtn"> 	<span class="icon-search"> 		</span></a>
+		</nav>
+	</footer>
+
+	<div id="mensajes" class="fullScreen loader">&nbsp;</div>
+	<style type="text/css" id="newCategoriesStyle"></style>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkQn7xaNDvejYT7o3c1qJHHYuyUoar1eU&sensor=true&callback=app.initMap"></script>
+	<script>app.initialize()</script>
+</body>
+</html>
