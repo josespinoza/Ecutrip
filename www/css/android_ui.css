@@ -63,7 +63,6 @@ select, input, textarea
 		overflow: hidden;
 		display: inline-block;
 		position: relative;
-		background: #fe8400;
 	}
 	.widget-select:before
 	{
@@ -90,7 +89,6 @@ select, input, textarea
 		{
 			border: 0;
 			width: 130%;
-			color: #FFF;
 			padding: 4px 20px 3px 12px;
 		}
 

@@ -8,25 +8,24 @@
 	<!--
 	el device-height en ios obtiene el total de pixeles de la pantalla, no del viewport
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no, target-densitydpi=device-dpi" />-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" /> 
 	<meta name="HandheldFriendly" content="True" />
 	<meta http-equiv="pragma" content="no-cache" />
 
-	<script src="./cordova.js"> 	</script>
-	<script src="js/parse.js">		</script>
-	<script src="js/map.js">		</script>
-	<script src="js/iscroll.js">	</script>
-	<script src="js/swipe.js">		</script>
-	<script src="js/xui.js">		</script>
-	<script src="js/pois.js" >		</script>
-	<script src="js/share.js" >		</script>
-	<script src="js/main.js" >		</script>
+	<script src="./cordova.js"	></script>
+	<script src="js/parse.js"	></script>
+	<script src="js/map.js"		></script>
+	<script src="js/iscroll.js"	></script>
+	<script src="js/swipe.js"	></script>
+	<script src="js/xui.js"		></script>
+	<script src="js/pois.js" 	></script>
+	<script src="js/share.js" 	></script>
+	<script src="js/main.js" 	></script>
 
 	<link rel="stylesheet" type="text/css" id="basic"	href="css/basic.css" >
 	<link rel="stylesheet" type="text/css" id="widget"	href="" >
 	<link rel="stylesheet" type="text/css" id="design"  href="" >
-
 
 </head>
 <body>
@@ -45,9 +44,9 @@
 			<form>
 				<div class="widget-select">
 					<select id="tipoMapa">
-						<option>Ver Mapa</option>
-						<option>Ver Tour</option>
-						<option>Ver Eventos</option>
+						<option>Mapa    </option>
+						<option>Tours   </option>
+						<option>Eventos </option>
 					</select>
 				</div>
 			</form>
@@ -169,7 +168,6 @@
 	</footer>
 
 	<div id="mensajes" class="fullScreen loader">&nbsp;</div>
-	<style type="text/css" id="newCategoriesStyle"></style>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkQn7xaNDvejYT7o3c1qJHHYuyUoar1eU&sensor=true&callback=app.initMap"></script>
 	<script>app.initialize()</script>

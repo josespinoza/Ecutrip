@@ -18,18 +18,25 @@ var map = {
 		};
 		canvas = new google.maps.Map(document.getElementById(canvas_id), mapOptions);
 		this.markers=[];
-		map.myMarker	= new google.maps.Marker({
-			position    : new google.maps.LatLng(lat, lng),
-			map         : canvas,
-			draggable   : false
-		});
 	},
 
 	
 	updatePosition: function( lat, lng )
 	{
 		map.myPosition = {latitude: lat, longitude: lng };
-		map.myMarker.setPosition(new google.maps.LatLng(lat, lng));
+
+		if( map.myMarker == null )
+		{
+			map.myMarker	= new google.maps.Marker({
+				position    : new google.maps.LatLng(lat, lng),
+				map         : canvas,
+				draggable   : false
+			});
+		}
+		else
+		{
+			map.myMarker.setPosition( new google.maps.LatLng( lat, lng ) );
+		}
 	},
 
 	
@@ -58,7 +65,7 @@ var map = {
 			icon        : image
 		});
 		
-		this.markers.push(marker);
+		map.markers.push(marker);
 		
 		google.maps.event.addListener(marker, 'click', function(event) {
 			callback(poi);
@@ -162,6 +169,7 @@ var map = {
 			}
 
 			map.polyline.setMap(canvas);
+			canvas.setZoom(14);
 			canvas.fitBounds(bounds);
 		}
 		else alert(status);

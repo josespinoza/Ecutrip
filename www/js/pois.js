@@ -28,8 +28,9 @@ var pois = {
 			if( opt.filter.descripcion  != null ){ query.contains("descripcion" , opt.filter.descripcion); }
 		}
 		
-		//CAMBIAAAAAARRR!!!!
+
 		query.equalTo("tour", null );
+		query.equalTo("evento", null );
 
 
 		query.find({
@@ -64,10 +65,7 @@ var pois = {
 				if( data.calificacion != null ) poi.set("calificacion", data.calificacion);
 				poi.save();
 			},
-			error: function(object, error) {
-				// The object was not retrieved successfully.
-				// error is a Parse.Error with an error code and description.
-			}
+			error: function(object, error) {}
 		});
 	},
 

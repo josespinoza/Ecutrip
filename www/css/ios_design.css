@@ -45,7 +45,8 @@ body
 		.widget-select select
 		{
 			padding: 4px 5px;
-			text-align: center;
+			text-align: left;
+			text-indent: 0;
 		}
 
 		#backButton

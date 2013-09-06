@@ -28,14 +28,14 @@ var app = {
 			document.addEventListener('deviceready', app.onDeviceReady, false);
 
 
-			//DISE�O
+			//DISEÑO
 			/***************************************************/
 			if( navigator.userAgent.match(/(iPhone|iPod|iPad)/i) ) this.setStyle('ios');
 			else this.setStyle('android');
 			//evita el movimiento de objetos cuando el teclado aparece
 			document.body.style.height = Math.max( document.body.scrollHeight, document.body.offsetHeight)+'px';
 			//oculto la pantalla de loading
-			setTimeout(function(){ x$( '#mensajes' ).removeClass( 'fullScreen loader' ); }, 5000 );
+			setTimeout(function(){ document.getElementById('mensajes').className = '' }, 5000 );
 			//añado la clase de la pantalla home al body
 			document.body.className += app.currentScreen+"_view";
 
@@ -61,27 +61,6 @@ var app = {
 			Parse.initialize("u4daJ3ZqB1O8T7wnIw0tzN7w4mJ2zVoPLAbplhXg", "unKKVJjm7mSqJow8z9XEIjzgowDuHngSVA2loUmg");
 			window.addEventListener("orientationchange", app.orientationChange, true);
 
-
-			//OTRAS CATEGORIAS
-			/***************************************************/
-			// keyname is now equal to "key"
-			var value = window.localStorage.getItem("categories");
-			if( value == null )
-			{
-				//window.localStorage.setItem("categories", '{"list":[{"nombre":"categoria nueva", "id": 67, "img":"asjfka"},{"nombre":"categoria nueva 2","id":99, "img":"asjfka"}]}');
-				x$('#infoHolder').xhr('http://ecutrips.herokuapp.com/categorias.json', function() {
-					window.localStorage.setItem("categories", this.responseText);
-					app.processCategories(this.responseText);
-					$('#infoHolder').html('');
-				});
-			}
-			else
-			{
-				//window.localStorage.removeItem("categories");
-				app.processCategories(value);
-				value=null;
-			}
-
 		},
 		
 
@@ -101,19 +80,6 @@ var app = {
 		},
 
 
-		processCategories: function( jsonData )
-		{
-			var newCategories = JSON.parse( jsonData );
-			for( var i=0; i<newCategories.list.length; i++)
-			{
-				var cat = newCategories.list[i];
-				x$('#scrollsearch nav').html('bottom','<a href="#" rel="'+cat.id+'">'+cat.nombre+'</a>');
-				x$('#scrollcategories nav').html('bottom','<a href="#" id="c'+cat.id+'">'+cat.nombre+'</a>');
-				x$('#newCategoriesStyle').html('bottom', 'body.Categorias_view #c'+cat.id+'  { background: url('+cat.img+') 92% 50% no-repeat; background-size: auto 70%; }');
-			}
-			app.listaCategorias = x$('#scrollsearch nav').html()+'';
-		},
-
 		updateGeoLocation: function()
 		{
 			function onSucess( position )
@@ -124,7 +90,7 @@ var app = {
 				map.updatePosition( app.currentlat, app.currentlng  );
 				setTimeout( app.updateGeoLocation, 1200000);
 			}
-			navigator.geolocation.getCurrentPosition( onSucess, app.onError );
+			navigator.geolocation.getCurrentPosition( onSucess, app.onErrorGeolocation );
 		},
 
 		initMap: function()
@@ -182,7 +148,12 @@ var app = {
 			for( i in poi )
 				map.newPOI( poi[i], app.openPOI );
 
-			if( app.tourView ) map.drawRoute();
+			if( app.tourView )
+			{
+				app.openPOI( poi[0] );
+				map.moveTo( poi[0].get('localizacion').latitude, poi[0].get('localizacion').longitude );
+				map.drawRoute();
+			}
 		},
 
 
@@ -218,7 +189,7 @@ var app = {
 				for( i in POI.get('imagenes') )
 				{
 					var display = ( i == 0 ) ? "block" : "none";
-					img += '<li style="display:'+display+'"><img src="'+imagenes[i]+'"/></li>'; 
+					img += '<li style="display:'+display+'; height:'+(document.body.scrollWidth*0.357)+'px" ><img src="'+imagenes[i]+'"/></li>'; 
 				}
 				img += '</ul>';
 
@@ -248,7 +219,7 @@ var app = {
 
 				/* AUDIO
 				**************************************************/
-				if( POI.get('audio') != null && POI.get('audio').url != '' )
+				if( typeof POI.get('audio') != 'undefined' || POI.get('audio') != null )
 				{
 					var audio = '';
 					audio += '<li><a href="#" id="audio_btn" onClick="app.playStream('+"'"+POI.get('audio').url+"'"+',this)"><span class="icon-volume-medium "></span> Escuchar audio gu&iacute;a</a></li>';
@@ -269,10 +240,10 @@ var app = {
 				/* CONTACTO
 				**************************************************/
 				var contacto='';
-				if( app.eventView )				{ contacto+='<li><a class="icon-location" onClick="app.changeScreen('+"'"+'mapCanvas'+"'"+');">Ver en el mapa <span>MAPA</span></a></li>'; }
-				if( POI.get('telefonos') != '' ){ contacto+='<li><a class="icon-phone" 	  href="tel:'	 +POI.get('telefonos') 	+'"			>'+ POI.get('telefonos') +'<span>TELEFONO 					</span></a></li>'; }
-				if( POI.get('correos')   != '' ){ contacto+='<li><a class="icon-mail " 	  href="mailto:' +POI.get('correos') 	+'"			>'+ POI.get('correos') 	 +'<span>CORREO ELECTR&Oacute;NICO 	</span></a></li>'; }
-				if( POI.get('web')       != '' ){ contacto+='<li><a class="icon-link" 	  href="'		 +POI.get('web')+' target="_blank" ">'+ POI.get('web') 		 +'<span>P&Aacute;GINA WEB 			</span></a></li>'; }
+				if( app.eventView || app.tourView ){ contacto+='<li><a class="icon-location" onClick="app.backScreen();">Ver en el mapa <span>MAPA</span></a></li>'; }
+				if( POI.get('telefonos') != '' 	  ){ contacto+='<li><a class="icon-phone" 	  href="tel:'	 +POI.get('telefonos') 	+'">'+ POI.get('telefonos') +'<span>TELEFONO 					</span></a></li>'; }
+				if( POI.get('correos')   != '' 	  ){ contacto+='<li><a class="icon-mail " href="mailto:' +POI.get('correos') 	+'">'+ POI.get('correos') 	+'<span>CORREO ELECTR&Oacute;NICO 	</span></a></li>'; }
+				if( POI.get('web')       != '' 	  ){ contacto+='<li><a class="icon-link" target="_blank" href="'+POI.get('web')+'">'+ POI.get('web') 		+'<span>P&Aacute;GINA WEB 			</span></a></li>'; }
 
 
 
@@ -309,8 +280,7 @@ var app = {
 				app.scrollInfo = new iScroll('infoScroll');
 
 				x$('.icon-link').on('click', function(e){
-					alert('dfasdfa'+e.target.rel);
-					navigator.app.loadUrl('http://google.com', { openExternal: true });
+					navigator.app.loadUrl(e.target.href, { openExternal: true });
 					e.preventDefault();
 					return false;
 				});
@@ -392,7 +362,8 @@ var app = {
 				success : app.showPOIS,
 				error   : app.onError, 
 			});
-			app.changeScreen('mapCanvas');
+			
+			//app.changeScreen('mapCanvas');
 			//event.preventDefault();
 			return false;
 		},
@@ -440,7 +411,7 @@ var app = {
 				error   : app.onError, 
 			});
 
-			event.preventDefault();
+			//event.preventDefault();
 			return false;
 		},
 
@@ -500,7 +471,6 @@ var app = {
 				var currentPoi = pois.getElementById( currentId );
 				app.openPOI( currentPoi );
 			});
-
 
 			app.scrollSearch.refresh(); 
 			app.scrollSearch.scrollTo(0, 0, 600);
@@ -622,13 +592,13 @@ var app = {
 			app.tourView  = false;
 			app.eventView = false;
 
-			if( document.getElementById('tipoMapa').value == 'Ver Mapa' )
+			if( document.getElementById('tipoMapa').value == 'Mapa' )
 			{
 				app.getNearPOI(); 
 				app.changeScreen('Categorias');
 			}
 			else
-			if( document.getElementById('tipoMapa').value == 'Ver Tour' )
+			if( document.getElementById('tipoMapa').value == 'Tours' )
 			{
 				app.getNearTOUR();
 				app.changeScreen('tourList');
@@ -636,7 +606,7 @@ var app = {
 				x$('#tourList' ).addClass('cargando');
 			}
 			else
-			if( document.getElementById('tipoMapa').value == 'Ver Eventos' )
+			if( document.getElementById('tipoMapa').value == 'Eventos' )
 			{
 				app.getNearEVENT();
 				app.changeScreen('eventList');
@@ -684,7 +654,7 @@ var app = {
 		{
 			if( app.currentScreen == 'mapCanvas' )
 			{
-				var r=confirm("Cerrar aplicación")
+				var r=confirm("Cerrar aplicacion")
 				if (r==true)
 					navigator.app.exitApp();
 			}
@@ -700,7 +670,7 @@ var app = {
 			pero es la unica forma de solucionar el problema cuando el canvas es de medidas dinamicas.*/
 			setTimeout(function(){ 
 				map.resize(); 
-				map.moveTo( map.myPosition.latitude, map.myPosition.longitude );
+				//map.moveTo( map.myPosition.latitude, map.myPosition.longitude );
 			},350);
 
 
@@ -714,6 +684,11 @@ var app = {
 			/**************************************************/
 			event.preventDefault();
 			return false;
+		},
+
+		onErrorGeolocation: function( error ) {
+			alert( 'No podemos localizarte, por favor enciende tu GPS' );
+			setTimeout( app.updateGeoLocation, 30000);
 		},
 
 		onError: function( error ) {  /*alert( error );*/ },
